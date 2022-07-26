@@ -1,0 +1,20 @@
+{
+    "name": "Links",
+    "description": "Add a link to your MyLinks account!",
+    "version": "1.0",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": ["tabs"],
+    "action": {
+        "default_title": "Bookmark URL",
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "16": "icons/bookmark-16.png",
+        "32": "icons/bookmark-32.png",
+        "96": "icons/bookmark-96.png",
+        "120": "icons/bookmark-120.png"
+    }
+}
