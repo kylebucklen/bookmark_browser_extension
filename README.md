@@ -1,4 +1,4 @@
-🔨 Building the extension manually
+🔨 Build the extension manually
 
 git clone https://github.com/WebCrateApp/browser-extension
 

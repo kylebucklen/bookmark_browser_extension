@@ -15,7 +15,8 @@ function init() {
 
     // set the current tab as the first item in the tab list
     chrome.tabs.query({currentWindow: true, active: true}, function(tabArray) {
-      document.getElementById("link_url").value = tabArray[0].url;
+        let tab_url = tabArray[0].url;
+        document.getElementById("link_url").innerHTML = tabArray[0].title + '<br/>' + tab_url;
     });
   });
 
