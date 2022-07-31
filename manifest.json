@@ -6,7 +6,16 @@
     "background": {
         "service_worker": "background.js"
     },
-    "permissions": ["tabs"],
+    "permissions": [
+        "tabs",
+        "storage",
+        "cookies",
+        "*//*.projectonair.com"
+    ],
+    "host_permissions": [
+        "https://www.projectonair.com/",
+        "*://*/*"
+    ],
     "action": {
         "default_title": "Bookmark URL",
         "default_popup": "popup/popup.html"
