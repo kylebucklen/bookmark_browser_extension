@@ -1,7 +1,9 @@
-/*
-* Get the current URL of the selected Chrome tab.
-*
-*/
+
+
+// If token DOES NOT exist, redirect to sign-in page
+
+
+
 
 function init() {
 
