@@ -4,12 +4,14 @@
  *
  * @returns {Boolean}
  */
-function remove_storage() {
-    chrome.storage.sync.set({}, function (response) {
-        return true;
-    });
+function logout() {
+    return chrome.storage.sync.clear()
+        .then(function(data) {
+            return data;
+        })
+        .catch(err => console.log(err));
 
-    return false;
+    return true;
 }
 
 /**
@@ -21,6 +23,12 @@ function remove_storage() {
  */
 function sign_in(user_info) {
     const formData = new FormData();
+
+    if (user_info === undefined || !user_info.hasOwnProperty('email') || !user_info.hasOwnProperty('pass')) {
+        return new Promise(resolve => {
+            resolve('fail');
+        });
+    }
 
     formData.append('email', user_info.email);
     formData.append('password', user_info.pass);
@@ -42,12 +50,12 @@ function sign_in(user_info) {
                     resolve('success');
                 });
             }).catch(function(reason) {
-                remove_storage();
+                logout();
             });
         });
     })
     .catch(function(reason) {
-        remove_storage();
+        logout();
     });
 }
 
@@ -129,6 +137,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             .catch(err => console.log(err));
     } else if (request.message === 'validate') {
         validate_token()
+            .then(res => sendResponse(res))
+            .catch(err => console.log(err));
+    } else if (request.message === 'logout') {
+        // Logout and remove token
+        logout()
             .then(res => sendResponse(res))
             .catch(err => console.log(err));
     }

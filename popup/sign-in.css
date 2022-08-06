@@ -1,11 +1,11 @@
 body {
-    width: 400px;
-    height: 100vh;
+    width: 500px;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     overflow: hidden;
 }
 
+/*
 form {
     align-items: center;
     display: flex;
@@ -15,33 +15,35 @@ form {
     flex-direction: column;
     text-align: center;
     box-sizing: border-box;
-    background-color: #fcee54;
+    background-color: #E8E8E8;
     flex-wrap: wrap;
 }
+*/
 
 input {
+    border-radius: 3px;
     margin: 10px;
     font-size: 120%;
-    width: 100px;
+    width: 150px;
     height: 5%;
     padding: 10px;
     border: none;
+    border: 1px solid black;
     font-family: monospace;
 }
 
 button {
-    font-size: 200%;
-    background-color: #f5c2e0;
+    background-color: #cccccc;
     border-radius: 5px;
     border: none;
     text-align: center;
     color: black;
-    font-family: monospace;
     font-weight: bold;
     padding: 10px;
     margin-top: 1%;
 }
 
-.white_placeholder::placeholder {
-    color: white;
+.my-1 {
+    margin-top: 0.25rem!important;
+    margin-bottom: 0.25rem!important;
 }

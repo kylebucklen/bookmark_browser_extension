@@ -2,6 +2,17 @@
 window.addEventListener('load', event => {
     event.preventDefault();
 
+    /*
+    chrome.runtime.sendMessage({ message: 'logout',
+        payload: {}},
+        function (res) {
+            //
+        });
+     * 
+     */
+
+
+
     // send message to background script to validate token
     chrome.runtime.sendMessage({ message: 're-auth',
         payload: {}},

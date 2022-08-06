@@ -1,5 +1,4 @@
 
-
 /**
  * Create event listener for onSubmit of sign in form
  *
@@ -23,9 +22,7 @@ document.querySelector('form').addEventListener('submit', event => {
     } else {
         document.querySelector('#email').placeholder = "Enter an email.";
         document.querySelector('#password').placeholder = "Enter a password.";
-        document.querySelector('#email').style.backgroundColor = 'red';
-        document.querySelector('#password').style.backgroundColor = 'red';
-        document.querySelector('#email').classList.add('white_placeholder');
-        document.querySelector('#password').classList.add('white_placeholder');
+        document.querySelector('#email').style.backgroundColor = '#FFCC66';
+        document.querySelector('#password').style.backgroundColor = '#FFCC66';
     }
 });
