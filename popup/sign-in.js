@@ -1,13 +1,10 @@
-const button = document.querySelector('button');
 
 
-
-// Check if token exists.  If so, redirect to bookmark page
-
-
-
-
-
+/**
+ * Create event listener for onSubmit of sign in form
+ *
+ * @type type
+ */
 document.querySelector('form').addEventListener('submit', event => {
     event.preventDefault();
 
@@ -21,7 +18,6 @@ document.querySelector('form').addEventListener('submit', event => {
             function (response) {
                 if (response === 'success') {
                     window.location.replace('./bookmark.html');
-                    //window.location.replace('./popup-sign-out.html');
                 }
             });
     } else {

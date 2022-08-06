@@ -1,8 +1,16 @@
 
+window.addEventListener('load', event => {
+    event.preventDefault();
 
-// If token DOES NOT exist, redirect to sign-in page
-
-
+    // send message to background script to validate token
+    chrome.runtime.sendMessage({ message: 're-auth',
+        payload: {}},
+        function (res) {
+            if (res !== 'success') {
+                window.location.replace('./sign-in.html');
+            }
+        });
+});
 
 
 function init() {
