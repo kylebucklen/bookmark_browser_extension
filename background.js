@@ -44,14 +44,16 @@ function sign_in(user_info) {
         return new Promise(resolve => {
             if (res.status !== 200) resolve('fail');
 
-            res.json().then(function(data) {
-                chrome.storage.sync.set({ 'user_info': user_info, 'token': data.token }, function (response) {
-                    if (chrome.runtime.lastError) resolve('fail');
-                    resolve('success');
+            res.json()
+                .then(function(data) {
+                    chrome.storage.sync.set({ 'user_info': user_info, 'token': data.token }, function (response) {
+                        if (chrome.runtime.lastError) resolve('fail');
+                        resolve('success');
+                    });
+                })
+                .catch(function(reason) {
+                    logout();
                 });
-            }).catch(function(reason) {
-                logout();
-            });
         });
     })
     .catch(function(reason) {
@@ -83,9 +85,7 @@ function validate_token(token) {
                     resolve('valid');
                 });
             })
-            .catch(function(reason) {
-                resolve('invalid');
-            });
+            .catch(err => console.log(err));
         });
 }
 
@@ -94,14 +94,50 @@ function validate_token(token) {
  *
  * @returns {unresolved}
  */
-function get_stored_credentials() {
-    return chrome.storage.sync.get('user_info')
+function get_stored_credentials(key) {
+    return chrome.storage.sync.get(key)
         .then(res => {
             return new Promise(resolve => {
-                resolve(res.user_info);
+                resolve(res[key]);
             });
         });
 }
+
+
+
+
+
+/**
+ * Get buckets for authenticated user
+ *
+ * @returns {unresolved}
+ */
+function get_buckets() {
+    return chrome.storage.sync.get('token')
+        .then(res => {
+            return fetch('https://www.projectonair.com/api/buckets', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' + res.token
+                }
+            })
+            .then(res => {
+                return new Promise(resolve => {
+                    if (res.status !== 200) resolve({});
+
+                    res.json()
+                        .then(res => {
+                            resolve(res);
+                        })
+                        .catch(err => console.log(err));
+                });
+            })
+            .catch(err => console.log(err));
+        });
+}
+
+
 
 
 
@@ -122,7 +158,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             .then(res => {
                 if (res === 'invalid') {
                     // Get stored credentials
-                    get_stored_credentials()
+                    get_stored_credentials('user_info')
                         .then(res => {
                             // Login using stored credentials
                             sign_in(res)
@@ -142,6 +178,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     } else if (request.message === 'logout') {
         // Logout and remove token
         logout()
+            .then(res => sendResponse(res))
+            .catch(err => console.log(err));
+    } else if (request.message === 'get-buckets') {
+        // Logout and remove token
+        get_buckets()
             .then(res => sendResponse(res))
             .catch(err => console.log(err));
     }

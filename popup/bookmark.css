@@ -6,6 +6,14 @@ body {
     margin: 0!important
 }
 
+.p-1 {
+    padding: 0.25rem!important
+}
+
+.p-2 {
+    padding: 0.50rem!important
+}
+
 .p-3 {
     padding: 1rem!important
 }
@@ -23,21 +31,42 @@ body {
     margin-top: 1rem!important
 }
 
+.mr-1 {
+    margin-right: 0.25rem!important
+}
+
+.mr-2 {
+    margin-right: 0.50rem!important
+}
+
 .my-1 {
     margin-top: 0.25rem!important;
     margin-bottom: 0.25rem!important;
+}
+
+.my-2 {
+    margin-top: 0.50rem!important;
+    margin-bottom: 0.50rem!important;
 }
 
 .row {
   display: flex;
 }
 
-.column {
-  flex: 50%;
+.column-80 {
+  flex: 80%;
+}
+
+.column-20 {
+  flex: 20%;
 }
 
 .text-right {
     text-align: right;
+}
+
+.align-bottom {
+    vertical-align: bottom;
 }
 
 .border {
