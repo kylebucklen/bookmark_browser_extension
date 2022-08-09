@@ -1,20 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="../js/authenticate.js"></script>
     <link rel="stylesheet" href="../css/bookmark.css">
     <!--<link rel="stylesheet" href="../css/fontawesome.css">-->
     <link href="../lib/fontawesome/css/all.css" rel="stylesheet">
 </head>
-
-<!--
-
-Add a logout icon
-Pull in list of buckets
-Write logic to post bookmark to api
-
--->
-
 
 <body class="m-0">
     <div class="border p-3 m-0">
@@ -27,9 +17,15 @@ Write logic to post bookmark to api
             </div>
         </div>
 
+        <div id="errors" class="word-break"></div>
 
+        <div class="row my-3" id="display_name">
+            <div class="column-100">
+                <input type="text" id="link_name" class="m-0 p-2" value="Test">
+            </div>
+        </div>
 
-        <h3 id="link_name" class="word-break my-2"></h3>
+        <!--<h3 id="link_name" class="word-break my-2"></h3>-->
         <span id="link_url" class="word-break"></span>
         <div class="row mt-3">
             <div class="column-80">

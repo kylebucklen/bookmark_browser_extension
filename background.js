@@ -135,7 +135,12 @@ function get_buckets() {
 }
 
 
-
+/**
+ * Send api request to bookmark url
+ *
+ * @param {type} info
+ * @returns {Promise}
+ */
 function bookmark_url(info) {
     const formData = new FormData();
 
@@ -161,8 +166,6 @@ function bookmark_url(info) {
             })
             .then(res => {
                 return new Promise(resolve => {
-                    if (res.status !== 200) resolve({});
-
                     res.json()
                         .then(res => {
                             resolve(res);
