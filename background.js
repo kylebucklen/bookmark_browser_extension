@@ -104,9 +104,6 @@ function get_stored_credentials(key) {
 }
 
 
-
-
-
 /**
  * Get buckets for authenticated user
  *
@@ -139,7 +136,43 @@ function get_buckets() {
 
 
 
+function bookmark_url(info) {
+    const formData = new FormData();
 
+    if (info === undefined || !info.hasOwnProperty('name') || !info.hasOwnProperty('url')) {
+        return new Promise(resolve => {
+            resolve('fail');
+        });
+    }
+
+    formData.append('bucket', info.bucket);
+    formData.append('name', info.name);
+    formData.append('url', info.url);
+
+    return chrome.storage.sync.get('token')
+        .then(res => {
+            return fetch('https://www.projectonair.com/api/link', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' + res.token
+                }
+            })
+            .then(res => {
+                return new Promise(resolve => {
+                    if (res.status !== 200) resolve({});
+
+                    res.json()
+                        .then(res => {
+                            resolve(res);
+                        })
+                        .catch(err => console.log(err));
+                });
+            })
+            .catch(err => console.log(err));
+        });
+}
 
 
 /**
@@ -183,6 +216,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     } else if (request.message === 'get-buckets') {
         // Logout and remove token
         get_buckets()
+            .then(res => sendResponse(res))
+            .catch(err => console.log(err));
+    } else if (request.message === 'bookmark') {
+        // Logout and remove token
+        bookmark_url(request.payload)
             .then(res => sendResponse(res))
             .catch(err => console.log(err));
     }

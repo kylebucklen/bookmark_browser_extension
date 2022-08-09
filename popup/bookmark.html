@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="bookmark.css">
+    <script src="../js/authenticate.js"></script>
+    <link rel="stylesheet" href="../css/bookmark.css">
     <!--<link rel="stylesheet" href="../css/fontawesome.css">-->
     <link href="../lib/fontawesome/css/all.css" rel="stylesheet">
 </head>
@@ -17,23 +18,33 @@ Write logic to post bookmark to api
 
 <body class="m-0">
     <div class="border p-3 m-0">
-        <h1 class="my-1">Add a Bookmark</h1>
-        <h3 id="link_name" class="word-break my-2">Unknown</h3>
-        <span id="link_url" class="word-break">Unknown</span>
-            <div class="row mt-3">
-                <div class="column-80">
-                    <select id="select_bucket" class="mr-2 p-1" name="bucket">
-                        <option value="">-- Select Bucket --</option>
-                    </select>
-                    <button id="add_bookmark"><i class="fa fa-plus mr-1"> </i> Add</button>
-                </div>
-                <div class="column-20 text-right">
-                    <button id="copy_bookmark" class="p-1" title="Copy to Clipboard"><i class="fa fa-link"></i></button>
-                </div>
+        <div class="row">
+            <div class="column-80">
+                <h1 class="my-1">Add a Bookmark</h1>
             </div>
+            <div class="column-20 text-right">
+                <button id="logout" title="Logout"><i class="fa fa-sign-out fa-xs"></i></button>
+            </div>
+        </div>
+
+
+
+        <h3 id="link_name" class="word-break my-2"></h3>
+        <span id="link_url" class="word-break"></span>
+        <div class="row mt-3">
+            <div class="column-80">
+                <select id="link_bucket" class="mr-2 p-1" name="bucket">
+                    <option value="">-- Select Bucket --</option>
+                </select>
+                <button id="add_bookmark"><i class="fa fa-plus mr-1"> </i> Add</button>
+            </div>
+            <div class="column-20 text-right">
+                <button id="copy_bookmark" class="p-1" title="Copy to Clipboard"><i class="fa fa-clipboard"></i></button>
+            </div>
+        </div>
     </div>
 
 
-    <script src="bookmark.js"></script>
+    <script src="../js/bookmark.js"></script>
 </body>
 </html>
