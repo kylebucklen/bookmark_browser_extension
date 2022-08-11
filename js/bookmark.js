@@ -95,15 +95,18 @@ add_button.addEventListener("click", function() {
     const link_bucket = document.querySelector('#link_bucket').value;
     const link_name = document.querySelector('#link_name').value;
     const link_url = document.querySelector('#link_url').innerText;
+    const link_description = document.querySelector('#link_description').value;
 
     // send message to background script to save the url
     chrome.runtime.sendMessage({ message: 'bookmark',
-        payload: { 'bucket': link_bucket, 'name': link_name, 'url': link_url }},
+        payload: { 'bucket': link_bucket, 'name': link_name, 'url': link_url, 'link_description': link_description }},
         function (response) {
             //var errors = JSON.parse(response.errors);
 
             if (response.errors === undefined) {
-                document.querySelector('#link_url').style.display = "none";
+                //document.querySelector('#link_url').style.display = "none";
+                document.querySelector('#display_description').style.display = "none";
+                document.querySelector('#display_bucket').style.display = "none";
                 document.querySelector('#display_name').style.display = "none";
 
                 document.querySelector('#errors').style.display = "block";
@@ -132,6 +135,7 @@ add_button.addEventListener("click", function() {
  *
  * @type Element
  */
+
 const logout = document.querySelector('#logout');
 
 logout.addEventListener("click", function() {

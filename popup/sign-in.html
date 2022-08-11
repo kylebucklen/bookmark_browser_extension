@@ -4,18 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sign In</title>
 
-    <link rel="stylesheet" href="../css/sign-in.css">
+    <link rel="stylesheet" href="../css/links.css">
+    <link href="../lib/fontawesome/css/all.css" rel="stylesheet">
 </head>
 
-<body>
-    <h1 class="my-1">Sign In</h1>
-    <form>
-        <input type="email" name="email" id="email" placeholder="Email">
-        <input type="password" name="password" id="password" placeholder="Password">
-        <button type="submit">Login</button>
-    </form>
+<body class="m-0 login">
+    <div class="border p-3 m-0">
+        <div class="row">
+            <div class="column-100">
+                <h1 class="my-1">Sign In</h1>
+            </div>
+        </div>
+
+        <form>
+            <div class="row my-3">
+                <div class="column-50">
+                    <input type="email" name="email" id="email" class="m-0 p-2 login" placeholder="Email">
+                </div>
+                <div class="column-50">
+                    <input type="password" name="password" id="password" class="m-0 p-2 password" placeholder="Password">
+                    <button type="submit" class="btn btn-info ml-2"><i class="fa fa-sign-in"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+
     <script src="../js/sign-in.js"></script>
 </body>
 
