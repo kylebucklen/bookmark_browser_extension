@@ -1,5 +1,4 @@
 
-
 // Hide the div that displays errors
 const errors = document.querySelector('#errors');
 errors.style.display = "none";
@@ -45,8 +44,6 @@ authenticate();
  * @returns {undefined}
  */
 function getTabs() {
-
-
     /**
      * Get current browser tab
      */

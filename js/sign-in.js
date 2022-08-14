@@ -1,4 +1,9 @@
 
+// Hide the div that displays errors
+const errors = document.querySelector('#errors');
+errors.style.display = "none";
+
+
 /**
  * Create event listener for onSubmit of sign in form
  *
@@ -17,6 +22,9 @@ document.querySelector('form').addEventListener('submit', event => {
             function (response) {
                 if (response === 'success') {
                     window.location.replace('./bookmark.html');
+                } else {
+                    document.querySelector('#errors').style.display = "block";
+                    document.querySelector('#errors').innerHTML = '<span class="danger">Invalid Login!</span>';
                 }
             });
     } else {
