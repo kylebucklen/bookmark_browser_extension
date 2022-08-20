@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Save Bookmark</title>
+    <title>Add a Bucket</title>
     <link rel="stylesheet" href="../css/links.css">
     <!--<link rel="stylesheet" href="../css/fontawesome.css">-->
     <link href="../lib/fontawesome/css/all.css" rel="stylesheet">
@@ -13,10 +13,9 @@
     <div class="border p-3 m-0">
         <div class="row">
             <div class="column-80">
-                <h1 class="my-1">Bookmark This Page!</h1>
+                <h1 class="my-1">Create a New Bucket</h1>
             </div>
             <div class="column-20 text-right">
-                <button id="copy_bookmark" class="p-1" title="Copy to Clipboard"><i class="fa fa-clipboard"></i></button>
                 <button id="logout" class="p-1" title="Logout"><i class="fa fa-sign-out fa-xs"></i></button>
             </div>
         </div>
@@ -25,34 +24,28 @@
 
         <div class="row my-3" id="display_name">
             <div class="column-100">
-                <input type="text" id="link_name" class="m-0 p-2 bookmark" value="Test"><br/>
+                <input type="text" id="bucket_name" class="m-0 p-2" value=""><br/>
                 <small class="ml-2 strong">Name</small>
             </div>
         </div>
 
-        <span id="link_url" class="word-break" style="display:none;"></span>
-
         <div class="row mt-3" id="display_description">
             <div class="column-100">
-                <textarea id="link_description" name="description" rows="3"></textarea><br/>
-                <small class="ml-2 strong">Notes</small>
+                <textarea id="bucket_description" name="description" rows="3"></textarea><br/>
+                <small class="ml-2 strong">Description</small>
             </div>
         </div>
 
         <div class="row mt-3" id="display_bucket">
-            <div class="column-80">
-                <select id="link_bucket" class="mr-2 p-1" name="bucket">
-                    <option value="">-- Bucket --</option>
-                </select>
-            </div>
+            <div class="column-80"></div>
             <div class="column-20 text-right">
-                <button id="add_bookmark" class="btn btn-info btn-sm"><!--<i class="fa fa-plus mr-1"> </i> -->Save</button>
+                <button id="add_bucket" class="btn btn-info btn-sm">Save</button>
             </div>
         </div>
 
     </div>
 
 
-    <script src="../js/bookmark.js"></script>
+    <script src="../js/bucket.js"></script>
 </body>
 </html>

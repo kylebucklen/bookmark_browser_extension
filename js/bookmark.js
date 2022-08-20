@@ -30,6 +30,18 @@ function authenticate() {
                             el.value = id;
                             select.appendChild(el);
                         }
+
+                        var el = document.createElement("option");
+                        el.textContent = '------------';
+                        el.value = '';
+                        el.disabled = true;
+                        select.appendChild(el);
+
+                        var el = document.createElement("option");
+                        el.textContent = '+ New';
+                        el.value = 'asdfasdfasdfasdasdf';
+                        select.appendChild(el);
+
                     });
             }
         });
@@ -96,7 +108,7 @@ add_button.addEventListener("click", function() {
 
     // send message to background script to save the url
     chrome.runtime.sendMessage({ message: 'bookmark',
-        payload: { 'bucket': link_bucket, 'name': link_name, 'url': link_url, 'link_description': link_description }},
+        payload: { 'bucket': link_bucket, 'name': link_name, 'url': link_url, 'description': link_description }},
         function (response) {
             //var errors = JSON.parse(response.errors);
 
@@ -125,6 +137,27 @@ add_button.addEventListener("click", function() {
 
   return true;
 });
+
+/**
+ * Check if user wants to add a new bucket
+ *  If so, redirect them to the buckets popup
+ *
+ * @returns {undefined}
+ */
+const new_bucket = document.querySelector('#link_bucket');
+
+new_bucket.addEventListener("change", function() {
+    const link_bucket = document.querySelector('#link_bucket').value;
+
+    // check if this is a request for a new bucket
+    if (link_bucket === 'asdfasdfasdfasdasdf') {
+        window.location.replace('./bucket.html');
+    }
+
+
+    return true;
+});
+
 
 
 /**

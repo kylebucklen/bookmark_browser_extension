@@ -153,10 +153,53 @@ function bookmark_url(info) {
     formData.append('bucket', info.bucket);
     formData.append('name', info.name);
     formData.append('url', info.url);
+    formData.append('description', info.description);
 
     return chrome.storage.sync.get('token')
         .then(res => {
             return fetch('https://www.projectonair.com/api/link', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' + res.token
+                }
+            })
+            .then(res => {
+                return new Promise(resolve => {
+                    res.json()
+                        .then(res => {
+                            resolve(res);
+                        })
+                        .catch(err => console.log(err));
+                });
+            })
+            .catch(err => console.log(err));
+        });
+}
+
+
+/**
+ * Send api request to create new bucket
+ *
+ * @param {type} info
+ * @returns {Promise}
+ */
+function save_bucket(info) {
+    const formData = new FormData();
+
+    if (info === undefined || !info.hasOwnProperty('name')) {
+        return new Promise(resolve => {
+            resolve('fail');
+        });
+    }
+
+    formData.append('name', info.name);
+    formData.append('description', info.description);
+
+    return chrome.storage.sync.get('token')
+        .then(res => {
+            return fetch('https://www.projectonair.com/api/bucket', {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -208,6 +251,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             })
             .catch(err => console.log(err));
     } else if (request.message === 'validate') {
+        // Validate user token
         validate_token()
             .then(res => sendResponse(res))
             .catch(err => console.log(err));
@@ -217,13 +261,18 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             .then(res => sendResponse(res))
             .catch(err => console.log(err));
     } else if (request.message === 'get-buckets') {
-        // Logout and remove token
+        // Get list of available buckets
         get_buckets()
             .then(res => sendResponse(res))
             .catch(err => console.log(err));
     } else if (request.message === 'bookmark') {
-        // Logout and remove token
+        // Save bookmark
         bookmark_url(request.payload)
+            .then(res => sendResponse(res))
+            .catch(err => console.log(err));
+    } else if (request.message === 'bucket') {
+        // Save bucket
+        save_bucket(request.payload)
             .then(res => sendResponse(res))
             .catch(err => console.log(err));
     }
