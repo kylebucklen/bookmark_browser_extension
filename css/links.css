@@ -43,6 +43,10 @@ body.bookmark {
     margin-top: 1rem!important
 }
 
+.mt-5 {
+    margin-top: 1.50rem!important
+}
+
 .ml-2 {
     margin-left: 0.50rem!important
 }
@@ -115,7 +119,9 @@ m-0 {
 }
 
 .word-break {
-    word-wrap: break-word;
+    /* word-wrap: break-word; */
+    word-wrap: normal;
+    overflow-wrap: anywhere;
 }
 
 .success {
