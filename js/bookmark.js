@@ -26,7 +26,7 @@ function authenticate() {
                             var opt = res[i]['name'];
                             var id = res[i]['id'];
                             var el = document.createElement("option");
-                            el.textContent = opt;
+                            el.text = opt.replace(/&nbsp;/g, "\xA0");
                             el.value = id;
                             select.appendChild(el);
                         }
@@ -70,7 +70,7 @@ function getTabs() {
       chrome.tabs.query({currentWindow: true, active: true}, function(tabArray) {
           let tab_url = tabArray[0].url;
           document.getElementById("link_name").value = tabArray[0].title;
-          document.getElementById("link_url").innerHTML = tab_url;
+          //document.getElementById("link_url").innerHTML = tab_url;
       });
     });
 }

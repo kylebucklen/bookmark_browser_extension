@@ -121,6 +121,7 @@ function get_buckets() {
             })
             .then(res => {
                 return new Promise(resolve => {
+
                     if (res.status !== 200) resolve({});
 
                     res.json()
